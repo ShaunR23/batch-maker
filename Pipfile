@@ -9,6 +9,8 @@ django-allauth = "*"
 django-rest-auth = "*"
 djangorestframework = "*"
 pillow = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
