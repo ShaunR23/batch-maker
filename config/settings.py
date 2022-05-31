@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_framework',
     'rest_auth.registration',
-    # 'rest_framework.authtoken',
-    # 'rest_auth',
+    'rest_framework.authtoken',
+    
 
     'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',
