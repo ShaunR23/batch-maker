@@ -1,7 +1,8 @@
 import React from "react";
 import Login from "./Login"
 import Register from "./Register.js"
-import {useState, useEffect} from "./react"
+import {useState, useEffect} from "react"
+import { useNavigate, Outlet } from "react-router-dom";
 import Cookies from "js-cookie"
 
 function App(handleError) {
@@ -39,5 +40,20 @@ function App(handleError) {
     setAuth(false);
     Cookies.remove("Authorization")
   }
+
+  const contextProps = {
+    isAdmin,
+    isAuth,
+    setAdmin,
+    setAuth,
+    
+  };
+
+  return (
+    <>
+      {/* <Header {...headerProps} /> */}
+      <Outlet context={{ ...contextProps }} />
+    </>
+  );
 }
 export default App;
