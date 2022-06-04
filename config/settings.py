@@ -33,6 +33,16 @@ ALLOWED_HOSTS = [
 
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 
 # Application definition
 
@@ -47,7 +57,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     
     
-
+    "corsheaders",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -56,9 +66,10 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'rest_framework.authtoken',
     
-
+    'recipes.apps.RecipesConfig',
     'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',
+    'api.apps.ApiConfig',
     
 
 
@@ -74,6 +85,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://batch-maker-sr23.herokuapp.com',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -161,7 +180,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL='/media/'
 
 #static file directories
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'frontend/static/build/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -169,5 +188,10 @@ STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 SITE_ID = 1
+
+REST_AUTH_SERIALIZERS = {
+    
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

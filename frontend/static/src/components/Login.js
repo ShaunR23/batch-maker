@@ -30,7 +30,7 @@ function Login(handleError){
             body: JSON.stringify(state),
         };
 
-        const response = await fetch("/rest-auth/login", options).catch(handleError);
+        const response = await fetch("/rest-auth/login/", options).catch(handleError);
 
         if(!response.ok) {
             throw new Error("Network response not ok")
