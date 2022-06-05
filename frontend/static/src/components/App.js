@@ -1,6 +1,8 @@
 import React from "react";
 import Login from "./Login"
 import Register from "./Register.js"
+import SideNav from "./SideNav";
+import Header from "./Header";
 import {useState, useEffect} from "react"
 import { useNavigate, Outlet } from "react-router-dom";
 import Cookies from "js-cookie"
@@ -51,7 +53,8 @@ function App(handleError) {
 
   return (
     <>
-      {/* <Header {...headerProps} /> */}
+      <Header  />
+      <SideNav />
       <Outlet context={{ ...contextProps }} />
     </>
   );
