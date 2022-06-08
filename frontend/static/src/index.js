@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App'
 import Login from './components/Login';
 import Register from './components/Register'
+import RecipeForm from './components/RecipeForm';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Route path ="/" element={<App />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/add-recipe" element={<RecipeForm />} />
           </Route>
       </Routes>
       </BrowserRouter>
