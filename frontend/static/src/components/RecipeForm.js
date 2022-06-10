@@ -34,8 +34,9 @@ function RecipeForm(){
         };
 
     const handleSave = async (e) => {
+      
         const data = {...state, phase: e.target.value}
-        let url = "api/v1/user/recipe/";
+        let url = "/api/v1/user/recipe/";
         let method = "POST";
 
         if (data.id) {
