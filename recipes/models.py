@@ -43,6 +43,7 @@ class Recipe(models.Model):
     measure_amount = models.IntegerField(default=0)
     measure_type = models.CharField(max_length=255, choices=MEASUREMENTS, default='CUPS')
     ingredient = models.CharField(max_length=255, default='Ingredient')
+    phase = models.CharField(max_length=255, default="DRAFT" )
 
 
 

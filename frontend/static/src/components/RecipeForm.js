@@ -16,6 +16,7 @@ const INITIAL_STATE = {
     measure_amount: '',
     measure_type: '',
     ingredient: '',
+    phase:""
 
 
 }
@@ -34,7 +35,7 @@ function RecipeForm(){
 
     const handleSave = async (e) => {
         const data = {...state, phase: e.target.value}
-        let url = "api/v1/user/recipe";
+        let url = "api/v1/user/recipe/";
         let method = "POST";
 
         if (data.id) {
@@ -76,19 +77,18 @@ return(
                 value={state.recipe_name}
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="recipe_type" className="block mb-2  ">
-                Recipe Type
-              </label>
-              <input
-                type="text"
-                id="recipe_type"
-                name="recipe_type"
-                className="shadow-sm bg-gray-50 border-dark border   text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                onChange={handleInput}
-                value={state.recipe_type}
-              />
-            </div>
+
+            <select id="recipe_type"  onChange={((e) => setState((prevState) => ({
+                    ...prevState,
+                    category: e.target.value,
+                })))}>
+                    <option>Recipe Type</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Dessert">Dessert</option>
+                </select>
+            
             <div className="mb-4">
               <label
                 htmlFor="prep_time"
@@ -180,7 +180,8 @@ return(
                 Notes
               </label>
               <input
-                type="text"
+                type="textarea"
+                rows={4}
                 id="notes"
                 name="notes"
                 className="shadow-sm bg-gray-50 border border-dark text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
@@ -197,7 +198,8 @@ return(
                 Directions
               </label>
               <input
-                type="text"
+                type="textarea"
+                rows={4}
                 id="directions"
                 name="directions"
                 className="shadow-sm bg-gray-50 border border-dark text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
@@ -262,8 +264,7 @@ return(
               type="button"
               onClick={handleSave}
               value="DRAFT"
-              data-dismiss="myModal"
-              className="text-white bg-dark-green hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2"
+              className="text-black bg-dark-green hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2"
             >
               Save
             </button>
@@ -272,7 +273,7 @@ return(
               type="button"
               value="SUBMITTED"
               onClick={handleSave}
-              className="text-white bg-dark-green hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2"
+              className="text-black bg-dark-green hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2"
             >
               Submit
             </button>
