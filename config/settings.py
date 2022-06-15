@@ -16,7 +16,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -30,7 +29,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'batch-maker-sr23.herokuapp.com',
-
 ]
 
 REST_FRAMEWORK = {
@@ -43,7 +41,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,8 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'whitenoise.runserver_nostatic',
-    
-    
     "corsheaders",
     'allauth',
     'allauth.account',
@@ -65,15 +60,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_auth.registration',
     'rest_framework.authtoken',
-    
     'recipes.apps.RecipesConfig',
     'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',
     'api.apps.ApiConfig',
-    
-
-
-
 ]
 
 MIDDLEWARE = [
@@ -86,7 +76,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -115,7 +104,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -126,25 +114,27 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -158,7 +148,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -177,20 +166,18 @@ AUTH_USER_MODEL = 'accounts.User'
 #Managing files
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 
 #static file directories
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'), )
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SITE_ID = 1
 
 REST_AUTH_SERIALIZERS = {
-    
     'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
 }
 

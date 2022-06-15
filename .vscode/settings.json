@@ -1,3 +1,4 @@
 {
-  "python.pythonPath": "/Users/shaunradford/.local/share/virtualenvs/batch-maker-pIPdOPv-/bin/python"
+  "python.pythonPath": "/Users/shaunradford/.local/share/virtualenvs/batch-maker-pIPdOPv-/bin/python",
+  "python.formatting.provider": "yapf"
 }

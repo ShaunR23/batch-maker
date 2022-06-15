@@ -1,17 +1,15 @@
 import { NavLink } from "react-router-dom";
 
-function Header({handleLogout, isAdmin}){
-    return (
-    
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray">
+function Header({ handleLogout, isAdmin }) {
+  return (
+    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray">
       <div className="container ml-2 flex flex-wrap justify-between items-center mx-auto">
-      
         <a href="#" className="">
           <span className="italic text-dark-green text-xl whitespace-nowrap dark:text-white">
             The Kitchen is yours, chef!
           </span>
         </a>
-        
+
         <button
           data-collapse-toggle="mobile-menu"
           type="button"
@@ -80,8 +78,6 @@ function Header({handleLogout, isAdmin}){
               </NavLink>
             </li>
 
-            
-
             <li>
               <NavLink
                 className="navLinks"
@@ -103,12 +99,10 @@ function Header({handleLogout, isAdmin}){
               </a>
             </li>
           </ul>
-          
         </div>
       </div>
     </nav>
- 
-    )
+  );
 }
 
-export default Header
+export default Header;

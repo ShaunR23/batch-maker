@@ -1,64 +1,59 @@
 import Cookies from "js-cookie";
 import { useState } from "react";
-import {handleError} from "../utils"
+import { handleError } from "../utils";
 
 const INITIAL_STATE = {
-    recipe_name: '',
-    image: null,
-    recipe_type: '',
-    prep_time: '',
-    cook_time: '',
-    cook_temp: '',
-    yield_name: '',
-    yield_quantity: '',
-    notes: '',
-    directions: '',
-    measure_amount: '',
-    measure_type: '',
-    ingredient: '',
-    phase:""
+  recipe_name: "",
+  image: null,
+  recipe_type: "",
+  prep_time: "",
+  cook_time: "",
+  cook_temp: "",
+  yield_name: "",
+  yield_quantity: "",
+  notes: "",
+  directions: "",
+  measure_amount: "",
+  measure_type: "",
+  ingredient: "",
+  phase: "",
+};
 
+function RecipeForm(props) {
+  const [state, setState] = useState({ ...props });
 
-}
+  const handleInput = (e) => {
+    const { name, value } = e.target;
 
-function RecipeForm(){
-    const [state, setState] = useState(INITIAL_STATE)
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    const handleInput = (e) => {
-        const {name, value} = e.target;
+  const handleSave = async (e) => {
+    const data = { ...state, phase: e.target.value };
+    let url = "/api/v1/user/recipe/";
+    let method = "POST";
 
-        setState((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-        };
-
-    const handleSave = async (e) => {
-      
-        const data = {...state, phase: e.target.value}
-        let url = "/api/v1/user/recipe/";
-        let method = "POST";
-
-        if (data.id) {
-            url = url + `${data.id}/`;
-            method = "PUT";
-            delete data.id;
-        }
-
-        const options = {
-            method,
-            headers: {
-                "X-CSRFToken": Cookies.get("csrftoken"),
-                "Content-Type": "application/json",
-                Authorization: Cookies.get("Authorization"),
-            },
-            body: JSON.stringify(data),
-        };
-
-        
+    if (data.id) {
+      url = url + `${data.id}/`;
+      method = "PUT";
+      delete data.id;
     }
-return(
-<div>
+
+    const options = {
+      method,
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+        "Content-Type": "application/json",
+        Authorization: Cookies.get("Authorization"),
+      },
+      body: JSON.stringify(data),
+    };
+  };
+  return (
+    <div>
       <div className=" container mx-auto flex justify-center items-center">
         <div className="">
           <form>
@@ -79,17 +74,22 @@ return(
               />
             </div>
 
-            <select id="recipe_type"  onChange={((e) => setState((prevState) => ({
-                    ...prevState,
-                    category: e.target.value,
-                })))}>
-                    <option>Recipe Type</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Dinner">Dinner</option>
-                    <option value="Dessert">Dessert</option>
-                </select>
-            
+            <select
+              id="recipe_type"
+              onChange={(e) =>
+                setState((prevState) => ({
+                  ...prevState,
+                  category: e.target.value,
+                }))
+              }
+            >
+              <option>Recipe Type</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Dessert">Dessert</option>
+            </select>
+
             <div className="mb-4">
               <label
                 htmlFor="prep_time"
@@ -260,7 +260,6 @@ return(
               />
             </div>
 
-
             <button
               type="button"
               onClick={handleSave}
@@ -278,16 +277,6 @@ return(
             >
               Submit
             </button>
-
-            {/* {props.setShow && (
-              <button
-                className="text-white bg-dark-green hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="button"
-                onClick={() => props.setShow(false)}
-              >
-                Close
-              </button>
-            )} */}
           </form>
         </div>
       </div>

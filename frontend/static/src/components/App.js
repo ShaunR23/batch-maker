@@ -1,15 +1,15 @@
 import React from "react";
-import Login from "./Login"
-import Register from "./Register.js"
+import Login from "./Login";
+import Register from "./Register.js";
 import SideNav from "./SideNav";
 import Header from "./Header";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
 function App(handleError) {
-  const [isAuth, setAuth] = useState(null)
-  const [isAdmin, setAdmin] = useState(null)
+  const [isAuth, setAuth] = useState(null);
+  const [isAdmin, setAdmin] = useState(null);
 
   const checkAuth = async () => {
     const response = await fetch("/rest-auth/user/", {
@@ -17,13 +17,13 @@ function App(handleError) {
         Authorization: Cookies.get("Authorization"),
       },
     });
-    if (!response.ok){
+    if (!response.ok) {
       setAuth(false);
       return;
     }
     const data = await response.json();
     setAuth(true);
-    setAdmin(data.is_superuser)
+    setAdmin(data.is_superuser);
   };
 
   const handleLogout = async () => {
@@ -34,26 +34,27 @@ function App(handleError) {
         "X=CSRFToken": Cookies.get("csrftoken"),
       },
     };
-    const response = await fetch("/rest-auth/logout", options).catch(handleError);
-    if(!response.ok){
+    const response = await fetch("/rest-auth/logout", options).catch(
+      handleError
+    );
+    if (!response.ok) {
       throw new Error("Something went wrong!");
     }
 
     setAuth(false);
-    Cookies.remove("Authorization")
-  }
+    Cookies.remove("Authorization");
+  };
 
   const contextProps = {
     isAdmin,
     isAuth,
     setAdmin,
     setAuth,
-    
   };
 
   return (
     <>
-      <Header  />
+      <Header />
       <SideNav />
       <Outlet context={{ ...contextProps }} />
     </>
